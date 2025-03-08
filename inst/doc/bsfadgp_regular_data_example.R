@@ -2,49 +2,49 @@
 library(DGP4LCF)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  
-#  # for reproducibility purpose
-#  set.seed(456)
-#  
-#  # create objects required in the function input
-#  q<- 8
-#  n<- 17
-#  
-#  obs_time_num<- rep(q, times = n)
-#  obs_time_index<- list()
-#  a_person<- list()
-#  col_person_index<- list()
-#  observed_x_train_regular_8<- list()
-#  
-#  for (person_index in 1:n){
-#    obs_time_index[[person_index]]<- (1:q)
-#    a_person[[person_index]]<- sim_fcs_truth$a_full[(1:q)]
-#    col_person_index[[person_index]]<- ((person_index-1)*q + 1):(person_index*q)
-#    observed_x_train_regular_8[[person_index]]<- sim_fcs_truth$observed_x_train[,,person_index]
-#  }
-#  
-#  mcem_parameter_setup_result<-
-#    mcem_parameter_setup(p = 100, k = 4, n = 17, q = 8,
-#                         obs_time_num = obs_time_num,
-#                         obs_time_index = obs_time_index,
-#                         a_person = a_person,
-#                         col_person_index = col_person_index,
-#                         y_init = sim_fcs_init$y_init,
-#                         a_init = sim_fcs_init$a_init_2,
-#                         z_init = sim_fcs_init$z_init_2,
-#                         phi_init = sim_fcs_init$phi_init,
-#                         a_full = sim_fcs_truth$a_full,
-#                         x = observed_x_train_regular_8,
-#                         train_index = (1:8))
-#  
+# 
+# # for reproducibility purpose
+# set.seed(456)
+# 
+# # create objects required in the function input
+# q<- 8
+# n<- 17
+# 
+# obs_time_num<- rep(q, times = n)
+# obs_time_index<- list()
+# a_person<- list()
+# col_person_index<- list()
+# observed_x_train_regular_8<- list()
+# 
+# for (person_index in 1:n){
+#   obs_time_index[[person_index]]<- (1:q)
+#   a_person[[person_index]]<- sim_fcs_truth$a_full[(1:q)]
+#   col_person_index[[person_index]]<- ((person_index-1)*q + 1):(person_index*q)
+#   observed_x_train_regular_8[[person_index]]<- sim_fcs_truth$observed_x_train[,,person_index]
+# }
+# 
+# mcem_parameter_setup_result<-
+#   mcem_parameter_setup(p = 100, k = 4, n = 17, q = 8,
+#                        obs_time_num = obs_time_num,
+#                        obs_time_index = obs_time_index,
+#                        a_person = a_person,
+#                        col_person_index = col_person_index,
+#                        y_init = sim_fcs_init$y_init,
+#                        a_init = sim_fcs_init$a_init_2,
+#                        z_init = sim_fcs_init$z_init_2,
+#                        phi_init = sim_fcs_init$phi_init,
+#                        a_full = sim_fcs_truth$a_full,
+#                        x = observed_x_train_regular_8,
+#                        train_index = (1:8))
+# 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  
-#  mcem_algorithm_result<-
-#    mcem_algorithm(ind_x = TRUE,
-#                   x = observed_x_train_regular_8,
-#                   mcem_parameter_setup_result = mcem_parameter_setup_result)
-#  
+# 
+# mcem_algorithm_result<-
+#   mcem_algorithm(ind_x = TRUE,
+#                  x = observed_x_train_regular_8,
+#                  mcem_parameter_setup_result = mcem_parameter_setup_result)
+# 
 
 ## ----fig1, fig.height = 4, fig.width=7----------------------------------------
 
@@ -61,67 +61,67 @@ par(old_par)
 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  
-#  gibbs_after_mcem_diff_initials_result<-
-#    gibbs_after_mcem_diff_initials(ind_x = TRUE,
-#                                   tot_chain = 5,
-#                                   mcem_parameter_setup_result = mcem_parameter_setup_result,
-#                                   mcem_algorithm_result = mcem_algorithm_result)
-#  
+# 
+# gibbs_after_mcem_diff_initials_result<-
+#   gibbs_after_mcem_diff_initials(ind_x = TRUE,
+#                                  tot_chain = 5,
+#                                  mcem_parameter_setup_result = mcem_parameter_setup_result,
+#                                  mcem_algorithm_result = mcem_algorithm_result)
+# 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  
-#  tot_chain<- 5
-#  
-#  for (chain_index in 1:tot_chain){
-#  
-#    gibbs_after_mcem_algorithm(chain_index = chain_index,
-#                                              mc_num = 10000,
-#                                              burnin = 3000,
-#                                              thin_step = 10 ,
-#                                              pathname = "path",
-#                                              pred_indicator = TRUE,
-#                                              pred_time_index = (9:10),
-#                                              x = observed_x_train_regular_8,
-#                                              gibbs_after_mcem_diff_initials_result = gibbs_after_mcem_diff_initials_result,
-#                                              mcem_algorithm_result = mcem_algorithm_result,
-#                                              mcem_parameter_setup_result = mcem_parameter_setup_result)
-#  }
-#  
+# 
+# tot_chain<- 5
+# 
+# for (chain_index in 1:tot_chain){
+# 
+#   gibbs_after_mcem_algorithm(chain_index = chain_index,
+#                                             mc_num = 10000,
+#                                             burnin = 3000,
+#                                             thin_step = 10 ,
+#                                             pathname = "path",
+#                                             pred_indicator = TRUE,
+#                                             pred_time_index = (9:10),
+#                                             x = observed_x_train_regular_8,
+#                                             gibbs_after_mcem_diff_initials_result = gibbs_after_mcem_diff_initials_result,
+#                                             mcem_algorithm_result = mcem_algorithm_result,
+#                                             mcem_parameter_setup_result = mcem_parameter_setup_result)
+# }
+# 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  
-#  constant_list<- list(num_time_test = 2,
-#                       mc_num = 10000,
-#                       thin_step = 10,
-#                       burnin = 3000,
-#                       pathname = "path",
-#                       p = 100,
-#                       k = 4,
-#                       n = 17,
-#                       q = 8,
-#                       ind_x = TRUE,
-#                       pred_indicator = TRUE)
-#  
-#  for (chain_index in 1:tot_chain){
-#  
-#    gibbs_after_mcem_load_chains_result<- gibbs_after_mcem_load_chains(chain_index = chain_index,
-#                                                                       gibbs_after_mcem_algorithm_result = constant_list)
-#  
-#    save(gibbs_after_mcem_load_chains_result,
-#         file = paste0("path/chain_", chain_index,"_result.RData"))
-#  }
-#  
-#  gibbs_after_mcem_combine_chains_result<- gibbs_after_mcem_combine_chains(tot_chain = 5,
-#                                                                           gibbs_after_mcem_algorithm_result = constant_list)
-#  
+# 
+# constant_list<- list(num_time_test = 2,
+#                      mc_num = 10000,
+#                      thin_step = 10,
+#                      burnin = 3000,
+#                      pathname = "path",
+#                      p = 100,
+#                      k = 4,
+#                      n = 17,
+#                      q = 8,
+#                      ind_x = TRUE,
+#                      pred_indicator = TRUE)
+# 
+# for (chain_index in 1:tot_chain){
+# 
+#   gibbs_after_mcem_load_chains_result<- gibbs_after_mcem_load_chains(chain_index = chain_index,
+#                                                                      gibbs_after_mcem_algorithm_result = constant_list)
+# 
+#   save(gibbs_after_mcem_load_chains_result,
+#        file = paste0("path/chain_", chain_index,"_result.RData"))
+# }
+# 
+# gibbs_after_mcem_combine_chains_result<- gibbs_after_mcem_combine_chains(tot_chain = 5,
+#                                                                          gibbs_after_mcem_algorithm_result = constant_list)
+# 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  numerics_summary_do_not_need_alignment_result<-
-#    numerics_summary_do_not_need_alignment(pred_x_truth =  sim_fcs_truth$observed_x_pred_reformat,
-#                                              pred_x_truth_indicator = TRUE,
-#                                           gibbs_after_mcem_combine_chains_result =  gibbs_after_mcem_combine_chains_result)
-#  
+# numerics_summary_do_not_need_alignment_result<-
+#   numerics_summary_do_not_need_alignment(pred_x_truth =  sim_fcs_truth$observed_x_pred_reformat,
+#                                             pred_x_truth_indicator = TRUE,
+#                                          gibbs_after_mcem_combine_chains_result =  gibbs_after_mcem_combine_chains_result)
+# 
 
 ## -----------------------------------------------------------------------------
 
@@ -161,8 +161,8 @@ pred_result_specific_gene
 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  numerics_summary_need_alignment_result<-
-#    numerics_summary_need_alignment(gibbs_after_mcem_combine_chains_result =  gibbs_after_mcem_combine_chains_result)
+# numerics_summary_need_alignment_result<-
+#   numerics_summary_need_alignment(gibbs_after_mcem_combine_chains_result =  gibbs_after_mcem_combine_chains_result)
 
 ## -----------------------------------------------------------------------------
 
